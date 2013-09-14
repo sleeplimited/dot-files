@@ -1,0 +1,44 @@
+##########
+#~/.mutt/muttrc
+##########
+
+# Set the preferred editor
+set editor = "vim"
+
+# Set my_name
+set my_name = "Rachael Thomas Carlson"
+
+set header_cache = "~/.cache/mutt"
+set imap_check_subscribed
+set imap_keepalive
+set mail_check = 60
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+
+## Sleep Limited Account
+source "~/.mutt/sleeplimited"
+folder-hook $folder 'source /home/rtc/.mutt/sleeplimited'
+
+## Gmail account
+source "~/.mutt/gmail"
+folder-hook *rachael.thomas.carlson@gmail.com/ 'source /home/rtc/.mutt/gmail'
+
+## shortcuts
+macro index,pager <f2> '<sync-mailbox><enter-command>source /home/rtc/.mutt/gmail<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source /home/rtc/.mutt/sleeplimited<enter><change-folder>!<enter>'
+
+source ~/.mutt/themes/calmar.light
+
+## GooBook
+## Info found at http://fsk141.com/gooey-google-contact-goodness-with-mutt/
+#goobook query (google contacts)
+set query_command="goobook query '%s'"
+bind editor \t complete-query ## tab completion for contacts :)
+
+# Add contacts to google
+# This changed 
+macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+
+# Reload goobook db
+macro index,pager gr "!goobook reload\n" "Goobook reload"

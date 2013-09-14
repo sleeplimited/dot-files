@@ -1,0 +1,19 @@
+## Receive options.
+set imap_user=rachael.thomas.carlson@gmail.com
+set folder = imaps://rachael.thomas.carlson@gmail.com@imap.gmail.com/
+set spoolfile = +INBOX
+set postponed = +INBOX/Drafts
+set record = +INBOX/Sent
+
+## Send options.
+set smtp_url=smtps://rachael.thomas.carlson@gmail.com@smtp.gmail.com
+set realname='Rachael Thomas Carlson'
+set from=rachael.thomas.carlson@gmail.com
+set hostname="gmail.com"
+set signature="Rachael Thomas Carlson"
+# connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## hook -- important!
+account-hook $folder "set imap_user=rachael.thomas.carlson@gmail.com "

@@ -1,0 +1,19 @@
+## Receive options.
+set imap_user=rtc@sleeplimited.org
+set folder = imaps://rtc@sleeplimited.org@server20.websitehostserver.net/
+set spoolfile = +INBOX
+set postponed = +INBOX/Drafts
+set record = +INBOX/Sent
+
+## Send options.
+set smtp_url=smtps://rtc@sleeplimited.org@server20.websitehostserver.net/
+set realname='Rachael Thomas Carlson'
+set from=rtc@sleeplimited.org
+set hostname="sleeplimited.org"
+set signature="Rachael Thomas Carlson"
+# connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## hook -- important!
+account-hook $folder "set imap_user=rtc@sleeplimited.org"
