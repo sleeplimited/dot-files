@@ -41,7 +41,7 @@ set autoindent      " Copy indent from current line when starting a new line
                     " (typing <CR> in Insert mode or when using the "o" or "O"
                     " command).
  
-set textwidth=79    " Maximum width of text that is being inserted. A longer
+set textwidth=70    " Maximum width of text that is being inserted. A longer
                     " line will be broken after white space to get this width.
  
 set formatoptions=c,q,r,t " This is a sequence of letters which describes how
@@ -80,18 +80,15 @@ nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 " Use the same color theme all the time
-colorscheme xoria256
+set t_Co=256
+colorscheme wombat256
 
 " set the font
 if has('gui_running')
-    set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Droid\ Sans\ Mono\ 10
 endif
-:set guioptions-=m
-:set guioptions-=T
-:set guioptions+=LlRrb
-:set guioptions-=LlRrb
 " Set the fold column so that you can see the cute folds
-:set foldcolumn=3
+" :set foldcolumn=3
 
 " map ,cd to move vim into the directory in which
 " that file is harbored
@@ -124,4 +121,27 @@ endfunc
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+
+" Spell checking mode
+func! SpellCheckMode()
+    setlocal spell spelllang=en_us
+endfu
+com! SP call SpellCheckMode()
+
+" WordProcessorMode
+func! WordProcessorMode() 
+  setlocal formatoptions=1 
+  setlocal noexpandtab 
+  map j gj 
+  map k gk
+  setlocal spell spelllang=en_us 
+  set complete+=s
+  set formatprg=par
+  setlocal wrap 
+  setlocal linebreak 
+endfu 
+com! WP call WordProcessorMode()
+
+" exiting modes with jj for <esc>
+:imap jk <esc>
 
