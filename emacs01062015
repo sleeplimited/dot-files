@@ -22,7 +22,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "#3c3b37" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "TeX Gyre Cursor")))))
+(setq inhibit-startup-message t)
 (global-visual-line-mode t)
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -31,3 +32,18 @@
 (global-hl-line-mode 1)
 (require 'ido)
 (ido-mode t)
+
+; Gnus Code
+; Set name and email:
+(setq user-full-name "Rachael Carlson"
+      user-mail-address "rtc@sleeplimited.org")
+
+(defun my-gnus-group-list-subscribed-groups ()
+  "List all subscribed groups with or without un-read messages"
+  (interactive)
+  (gnus-group-list-all-groups 5)
+  )
+(add-hook 'gnus-group-mode-hook
+	  ;; list all the subscribed groups even if they contain zero un-read messages
+	  (lambda () (local-set-key "o" 'my-gnus-group-list-subscribed-groups ))
+	  )
